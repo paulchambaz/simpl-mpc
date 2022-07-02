@@ -12,8 +12,8 @@ Installation
 -
 
 To build this program you will need a couple dependencies:
-- [ncurses][https://invisible-island.net/ncurses/]
-- [libmpdclient][https://www.musicpd.org/libs/libmpdclient/]
+- [ncurses](https://invisible-island.net/ncurses/)
+- [libmpdclient](https://www.musicpd.org/libs/libmpdclient/)
 
 If you use linux, these are most likely in the default repository of your package manager.
 
