@@ -39,25 +39,23 @@ main(int argc, int *argv[])
 
   char key;
   int lines = LINES, cols = COLS;
+
+  // endwin();
+  // input_side(key, &interface, music_data, mpd_connection);
+
   while ((key = getch())) {
-    if (key == 'q')
-      break;
+
+    input_general(key, &interface, &music_data, mpd_connection);
 
     if (!interface.ui_param->on_main) {
       input_side(key, &interface, music_data, mpd_connection);
     } else {
       input_main(key, &interface, music_data, mpd_connection);
     }
-    input_general(key, &interface, music_data, mpd_connection);
 
     mpd_sync(&mpd_connection, music_data, interface.ui_param);
 
     print_interface(&interface, music_data);
     refresh_interface(&interface);
   }
-
-  quit_interface(&interface);
-  
-  free_music_data(&music_data);
-  mpd_instance_free(&mpd_connection);
 }
