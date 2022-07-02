@@ -8,6 +8,8 @@ It takes its interface inspired by the musikcube interface and connects it to a 
 Do not expect this program to be a "complete" mpd client: its only use is to listen to album one at a time.
 Uses vim binding and all shortcut are enable without pressing a modkey.
 
+For more information read the man page.
+
 Installation
 -
 
