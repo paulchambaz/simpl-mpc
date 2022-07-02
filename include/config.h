@@ -3,7 +3,7 @@
 
 #define ctrl(x) ((x) & 0x1f)
 
-static const char *command_input = "$HOME/.scripts/resetstatusbar";
+static const char *command_input = "";
 
 static const int volume_incr = 10;
 static const int seek_incr = 5;

@@ -1,28 +1,86 @@
 .TH simpl-mpc 1 simpl-mpc
 .SH NAME 
-simpl-mpc a short description
+This program is a mpd client.
+.br
+It focuses on having a strong "album centered" listening experience.
 .SH SYNOPSIS
 .B simpl-mpc
-[
-.I OPTIONS
-]
 .SH DESCRIPTION
-.B simpl-mpc
-description
-.SH COMMANDS
+In order to use this program, you must first have a running mpd server.
+That means you need to have your own library of albums.
+.br
+To get the optimal experience it is recommended to tag those album as best as possible.
+This allows good sorting and a general better experience.
+.br
+All keybinds will be detailed below.
+.br
+When starting an album, this program clears the mpd queue and adds it - this means the album will loopback by default.
+However this also means that this program does not support playlist or even having multiple album one after another.
+.SH KEYBINDS
 .TP
-.B -a <arg>
-command description
+.B q, Q, C^q, C^c
+Exits the program
+.TP
+.B space
+Toggle pause mpd
+.TP
+.B n
+Skips to next track
+.TP
+.B p
+Skips to previous track
+.TP
+.B =, +
+Raise volume
+.TP
+.B -, _
+Lower volume
+.TP
+.B s
+Toggle shuffle
+.TP
+.B r
+Toggle repeat
+.TP
+.B x
+Clear the mpd playlist
+.TP
+.B .
+Seek forward
+.TP
+.B ,
+Seek backward
+.TP
+.B j
+Go down on the list of their respective menu
+.TP
+.B k
+Go up on the list of their respective menu
+.TP
+.B l
+Go to main menu (only on side menu)
+.TP
+.B h
+Go to side menu (only on main menu)
+.TP
+.B enter
+Start the album (only on side menu)
+.br
+Start the album in background and start title (only on main menu)
 .SH CONFIGURATION
 .TP
-.B config file location
-configuration file path
+.B include/config.h
+You can use this file to modify the config of the program.
+As of now you can edit the command ran after each mpd command sent, volume and seek increment and each keybind.
+.TP
+.B include/config.def.h
+It is generally recommend to modify this file and then to copy it before build for better separation.
 .SH MORE INFORMATION
-more information can be added here
+Please support developpers - especially ncurses and mpd developpers for their fantastic work.
 .SH AUTHORS
-Written by Paul Chambaz <paul.chambazz@gmail.com> in DATE
+Written by Paul Chambaz <paul.chambazz@gmail.com> in 2022
 .SH LICENSE
 GPLv2
 .SH SEE ALSO
-.BR dependenciesA (1),
-.BR dependenciesB (2)
+.BR ncurses (1),
+.BR libmpdclient (2)
