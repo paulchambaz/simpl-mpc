@@ -40,6 +40,7 @@ input_start_album (struct mpd_connection *connection, Ui_param ui_param, Music_d
     mpd_run_add_id(connection, music_data.id[i][j]);
   }
   mpd_run_play(connection);
+  mpd_response_finish(connection);
 }
 
 void
@@ -103,6 +104,7 @@ input_start_title (struct mpd_connection *connection, Ui_param ui_param, Music_d
   for (int j = 0; j < ui_param.title_selected; j++) {
      mpd_run_next(connection);
   }
+  mpd_response_finish(connection);
 }
 
 void
@@ -133,6 +135,7 @@ input_toggle_pause (struct mpd_connection *connection, Ui_param ui_param)
   } else {
     mpd_run_play(connection);
   }
+  mpd_response_finish(connection);
 }
 
 void
@@ -140,6 +143,7 @@ input_next (struct mpd_connection *connection, Ui_param ui_param)
 {
   if (ui_param.playing) {
     mpd_run_next(connection);
+    mpd_response_finish(connection);
   }
 }
 
@@ -148,6 +152,7 @@ input_prev (struct mpd_connection *connection, Ui_param ui_param)
 {
   if (ui_param.playing) {
     mpd_run_previous(connection);
+    mpd_response_finish(connection);
   }
 }
 
@@ -156,6 +161,7 @@ input_volume_up (struct mpd_connection *connection, Ui_param ui_param)
 {
   if (ui_param.playing) {
     mpd_run_change_volume(connection, +10);
+    mpd_response_finish(connection);
   }
 }
 
@@ -164,6 +170,7 @@ input_volume_down (struct mpd_connection *connection, Ui_param ui_param)
 {
   if (ui_param.playing) {
     mpd_run_change_volume(connection, -10);
+    mpd_response_finish(connection);
   }
 }
 
@@ -171,30 +178,41 @@ void
 input_shuffle (struct mpd_connection *connection, Ui_param ui_param)
 {
   mpd_run_shuffle(connection);
+  mpd_response_finish(connection);
 }
 
 void
 input_repeat (struct mpd_connection *connection, Ui_param ui_param)
 {
   mpd_run_repeat(connection, ui_param.repeat);
+  mpd_response_finish(connection);
 }
 
 void
-input_clear (struct mpd_connection *connection)
+input_clear (struct mpd_connection *connection, Ui_param ui_param)
 {
-  mpd_run_clear(connection);
+  if (ui_param.playing) {
+    mpd_run_clear(connection);
+    mpd_response_finish(connection);
+  }
 }
 
-void
+  void
 input_seek_forward (struct mpd_connection *connection, Ui_param ui_param)
 {
-  mpd_run_seek_current(connection, +5, true);
+  if (ui_param.playing) {
+    mpd_run_seek_current(connection, +5, true);
+    mpd_response_finish(connection);
+  }
 }
 
-void
+  void
 input_seek_backward (struct mpd_connection *connection, Ui_param ui_param)
 {
-  mpd_run_seek_current(connection, -5, true);
+  if (ui_param.playing) {
+    mpd_run_seek_current(connection, -5, true);
+    mpd_response_finish(connection);
+  }
 }
 
 void
@@ -230,7 +248,7 @@ input_general (char key, Interface *interface, Music_data music_data, struct mpd
       system(command_input);
       break;
     case 'x':
-      input_clear(connection);
+      input_clear(connection, *interface->ui_param);
       system(command_input);
       break;
     case '.':

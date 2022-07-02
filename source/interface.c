@@ -175,9 +175,7 @@ print_bar_window (WINDOW *bar_window, Ui_param ui_param, Ui_dimension ui_dimensi
   int current_duration = (ui_param.playing) ? ui_param.current_duration : 0;
   int duration = (ui_param.playing) ? music_data.duration[ui_param.album_playing][ui_param.title_playing] : 0;
 
-  wclear(bar_window);
-
-  mvwprintw(bar_window, 0, 0, "%02u:%02u ", ui_param.current_duration / 60, ui_param.current_duration % 60);
+  mvwprintw(bar_window, 0, 0, "%02u:%02u ", current_duration / 60, current_duration % 60);
 
   whline(bar_window, 0, COLS - ui_dimension.volume_width - ui_dimension.right_bottom_width - 2 * 6);
 

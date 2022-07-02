@@ -116,6 +116,9 @@ mpd_sync (struct mpd_connection **mpd_connection, Music_data music_data, Ui_para
 
   // we recieve the song
   struct mpd_song *song = mpd_recv_song(*mpd_connection);
+  if (!song) {
+    return;
+  }
 
   // finally we can get the info
   const char *current_uri = mpd_song_get_uri(song);
