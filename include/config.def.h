@@ -32,7 +32,6 @@ static Key keys[] = {
   { 'q',        GENERAL,    EXIT },
   { 'Q',        GENERAL,    EXIT },
   { ctrl('q'),  GENERAL,    EXIT },
-  { ctrl('c'),  GENERAL,    EXIT },
   { ' ',        GENERAL,    PAUSE },
   { 'n',        GENERAL,    NEXT },
   { 'p',        GENERAL,    PREVIOUS },

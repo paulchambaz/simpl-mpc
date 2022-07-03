@@ -40,9 +40,6 @@ main(int argc, int *argv[])
   char key;
   int lines = LINES, cols = COLS;
 
-  // endwin();
-  // input_side(key, &interface, music_data, mpd_connection);
-
   while ((key = getch())) {
 
     input_general(key, &interface, &music_data, mpd_connection);
