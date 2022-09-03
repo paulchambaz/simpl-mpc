@@ -11,6 +11,7 @@
 
 #include "music_data.h"
 #include "interface.h"
+#include "config.h"
 
 #define MIN(x,y) (x < y) ? x : y
 

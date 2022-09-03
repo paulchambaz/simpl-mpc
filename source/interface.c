@@ -43,7 +43,7 @@ init_interface (Interface *interface)
 
   raw();
   keypad(stdscr, TRUE);
-  timeout(1000);
+  timeout(100);
   refresh();
   start_color();
   init_pair(0, 8, 0);
@@ -220,6 +220,17 @@ refresh_interface (Interface *interface)
   wrefresh(interface->volume_window);
   wrefresh(interface->bar_window);
   wrefresh(interface->status_window);
+}
+
+void
+destroy_interface (Interface *interface)
+{
+  delwin(interface->side_window);
+  delwin(interface->main_window);
+  delwin(interface->info_window);
+  delwin(interface->volume_window);
+  delwin(interface->bar_window);
+  delwin(interface->status_window);
 }
 
 void

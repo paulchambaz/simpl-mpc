@@ -44,6 +44,8 @@ typedef struct {
 
 // set the default values for the ui
 void set_default_ui ( Interface *interface );
+// initialize the windows to correct size
+void set_ui_dimensions ( Interface *interface ) ;
 // initaliaze the interface and all its components
 void init_interface ( Interface *interface );
 // prints the side window
@@ -62,6 +64,8 @@ void print_status_window ( WINDOW *status_window, Ui_param ui_param, Ui_dimensio
 void print_interface ( Interface *interface, Music_data music_data );
 // refreshes all windows
 void refresh_interface ( Interface *interface );
+// destroys the windows
+void destroy_interface ( Interface *interface );
 // quits the ncurses interface
 void quit_interface ( Interface *interface );
 // frees the data associated with the interface

@@ -212,8 +212,8 @@ get_index_music_data ( const char *in, Music_data music_data )
   for (int i = 0; i < music_data.size; i++) {
     for (int j = 0; j < music_data.album_size[i]; j++) {
       if (fast_strcmp(in, music_data.id[i][j])) {
-        out.index = i;
-        out.album_index = j;
+        out.index = j;
+        out.album_index = i;
         return out;
       }
     }

@@ -124,8 +124,11 @@ mpd_sync (struct mpd_connection **mpd_connection, Music_data music_data, Ui_para
   const char *current_uri = mpd_song_get_uri(song);
   Music_data_index music_data_index = get_index_music_data(current_uri, music_data);
   ui_param->playing = true;
-  ui_param->album_playing = music_data_index.index;
-  ui_param->title_playing = music_data_index.album_index;
+  if (ui_param->title_playing != music_data_index.index || ui_param->album_playing != music_data_index.album_index) {
+    ui_param->title_playing = music_data_index.index;
+    ui_param->album_playing = music_data_index.album_index;
+    system(command_input);
+  }
   ui_param->current_duration = mpd_status_get_elapsed_time(status);
 
   mpd_song_free(song);

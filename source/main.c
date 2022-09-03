@@ -42,6 +42,11 @@ main(int argc, int *argv[])
 
   while ((key = getch())) {
 
+    if (lines != LINES || cols != COLS) {
+      destroy_interface(&interface);
+      set_ui_dimensions(&interface);
+    }
+
     input_general(key, &interface, &music_data, mpd_connection);
 
     if (!interface.ui_param->on_main) {
