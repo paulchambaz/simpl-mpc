@@ -1,3 +1,11 @@
+/**
+ * @file interface.h
+ * @author Paul Chambaz
+ * @date 16 Sep 2022
+ * @brief Header file to print the interface
+ * @license GPLv2
+ */
+
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
@@ -10,13 +18,30 @@
 
 #include "music_data.h"
 
-typedef struct {
+/* enum to hold colors used in the program */
+enum colors {
+  WHITE =  1,
+  RED = 2,
+  GREEN = 3,
+  BG_WHITE = 4,
+  BG_BLUE = 5,
+  BG_GREEN = 6,
+  BG_AQUA = 7,
+};
+
+/**
+ * @brief Structure for holding information about the interface dimensions
+ */
+struct ui_dimension {
   int sidebar_width;
   int volume_width;
   int right_bottom_width;
-} Ui_dimension;
+};
 
-typedef struct {
+/**
+ * @brief Structure for holding information about the interface state
+ */
+struct ui_param {
   bool on_main;
   int side_scroll;
   int main_scroll;
@@ -29,46 +54,33 @@ typedef struct {
   bool shuffle;
   bool repeat;
   unsigned int current_duration;
-} Ui_param;
+};
 
-typedef struct {
+/**
+ * @brief General structure holding all interface related structures
+ */
+struct interface {
   WINDOW *side_window;
   WINDOW *main_window;
   WINDOW *info_window;
   WINDOW *volume_window;
   WINDOW *bar_window;
   WINDOW *status_window;
-  Ui_dimension *ui_dimension;
-  Ui_param *ui_param;
-} Interface;
+  struct ui_dimension *ui_dimension;
+  struct ui_param *ui_param;
+};
 
-// set the default values for the ui
-void set_default_ui ( Interface *interface );
-// initialize the windows to correct size
-void set_ui_dimensions ( Interface *interface ) ;
-// initaliaze the interface and all its components
-void init_interface ( Interface *interface );
-// prints the side window
-void print_side_window ( WINDOW *side_window, Ui_param ui_param, Ui_dimension ui_dimension, Music_data music_data );
-// prints the main window
-void print_main_window ( WINDOW *main_window, Ui_param ui_param, Ui_dimension ui_dimension, Music_data music_data );
-// prints the info window
-void print_info_window ( WINDOW *info_window, Ui_param ui_param, Ui_dimension ui_dimensio, Music_data music_data );
-// prints the volume window
-void print_volume_window ( WINDOW *volume_window, Ui_param ui_param, Ui_dimension ui_dimension );
-// prints the bar window
-void print_bar_window ( WINDOW *bar_window, Ui_param ui_param, Ui_dimension ui_dimension, Music_data music_data );
-// prints the status window
-void print_status_window ( WINDOW *status_window, Ui_param ui_param, Ui_dimension ui_dimension );
-// prints the entire interface
-void print_interface ( Interface *interface, Music_data music_data );
-// refreshes all windows
-void refresh_interface ( Interface *interface );
-// destroys the windows
-void destroy_interface ( Interface *interface );
-// quits the ncurses interface
-void quit_interface ( Interface *interface );
-// frees the data associated with the interface
-void free_interface ( Interface *interface );
+void set_default_ui ( struct interface *interface );
+void set_ui_dimensions ( struct interface *interface ) ;
+void init_interface ( struct interface *interface );
+void print_side_window ( WINDOW *side_window, struct ui_param ui_param, struct ui_dimension ui_dimension, struct music_data music_data );
+void print_main_window ( WINDOW *main_window, struct ui_param ui_param, struct ui_dimension ui_dimension, struct music_data music_data );
+void print_info_window ( WINDOW *info_window, struct ui_param ui_param, struct ui_dimension ui_dimensio, struct music_data music_data );
+void print_volume_window ( WINDOW *volume_window, struct ui_param ui_param, struct ui_dimension ui_dimension );
+void print_bar_window ( WINDOW *bar_window, struct ui_param ui_param, struct ui_dimension ui_dimension, struct music_data music_data );
+void print_status_window ( WINDOW *status_window, struct ui_param ui_param, struct ui_dimension ui_dimension );
+void print_interface ( struct interface *interface, struct music_data music_data );
+void destroy_interface ( struct interface *interface );
+void free_interface ( struct interface *interface );
 
 #endif

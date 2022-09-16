@@ -1,3 +1,11 @@
+/**
+ * @file mpd_instance.h
+ * @author Paul Chambaz
+ * @date 16 Sep 2022
+ * @brief Header file to connect to the mpd connection and get music data
+ * @license GPLv2
+ */
+
 #ifndef MPD_INSTANCE_H
 #define MPD_INSTANCE_H
 
@@ -13,24 +21,16 @@
 #include "interface.h"
 #include "config.h"
 
-#define MIN(x,y) (x < y) ? x : y
+#define MIN(x, y) (x < y) ? x : y
 
-// max length for the metadata associated with a song
+/* max length for the metadata associated with a song */
 #define MAX_STR_LEN 4096
-// max memory given when searching for metadata (here 1Gb)
+/* max memory given when searching for metadata (here 1Gb) */
 #define MAX_MEM_SEARCH 1073741824
 
-// primary structure that hold information about the mpd instance
-typedef struct {
-  struct mpd_connection *connection;
-} Mpd_instance;
+void mpd_instance_connect ( struct mpd_connection **mpd_connection );
+void qck_strcpy ( char **dest, const char *source );
+void mpd_get_metadata ( struct mpd_connection **mpd_connection, struct raw_music_data *raw_music_data );
+void mpd_sync ( struct mpd_connection **mpd_connection, struct music_data music_data, struct ui_param *ui_param );
 
-// finds and connect to the mpd instance running
-void mpd_instance_connect( struct mpd_connection **mpd_connection );
-// free the mpd instance
-void mpd_instance_free( struct mpd_connection **mpd_connection );
-// get a list of files metadata from mpd
-void mpd_get_metadata( struct mpd_connection **mpd_connection, Raw_music_data *raw_music_data );
-// sync the current parameter with mpd
-void mpd_sync ( struct mpd_connection **mpd_connection, Music_data music_data, Ui_param *ui_param );
 #endif
