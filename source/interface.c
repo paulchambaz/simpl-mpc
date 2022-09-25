@@ -9,7 +9,7 @@
 #include "interface.h"
 
 /**
- * @breif Initializes the interface values
+ * @brief Initializes the interface values
  * @param interface The interface struct holding data on the interface
  */
 void

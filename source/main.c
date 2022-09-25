@@ -72,6 +72,8 @@ main(int argc, int *argv[])
     if (lines != LINES || cols != COLS) {
       destroy_interface(&interface);
       set_ui_dimensions(&interface);
+      lines = LINES;
+      cols = COLS;
     }
 
     /* Input management, for the program and for the individual windows */
