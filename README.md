@@ -1,8 +1,7 @@
-SIMPL-MPC
-=
+# simpl-mpc
 
-About
--
+## About
+
 This project is a continuation of another project - a music program called simpl.
 It takes its interface inspired by the musikcube interface and connects it to a mpd server.
 Do not expect this program to be a "complete" mpd client: its only use is to listen to album one at a time.
@@ -10,8 +9,7 @@ Uses vim binding and all shortcut are enable without pressing a modkey.
 
 For more information read the man page.
 
-Installation
--
+## Installation
 
 To build this program you will need a couple dependencies:
 - [ncurses](https://invisible-island.net/ncurses/)
@@ -25,8 +23,8 @@ cd simpl-mpc/build
 sudo make clean install
 ```
 
-Configuration
--
+## Configuration
+
 You can choose to configure this program.
 All modifications are done in a `include/config.h`.
 Of course you can also edit in `include/config.def.h` for better organization.
@@ -35,8 +33,7 @@ You can configure the command sent after each mpd command (useful for updating s
 You can configure the volume and seek increments.
 Finally, you can configure each shortcut of the program.
 
-Licence
--
+## Licence
 
 This project is licenced under the GPLv2 licence.
 For more information, read the LICENSE file.
