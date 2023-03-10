@@ -9,6 +9,8 @@ Uses vim binding and all shortcut are enable without pressing a modkey.
 
 For more information read the man page.
 
+![A screenshot of the program](screenshots/screenshot.png)
+
 ## Installation
 
 To build this program you will need a couple dependencies:
